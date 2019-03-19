@@ -365,7 +365,7 @@
 <li>title: 通常会忽略这个参数，可直接用 <code>null</code> 代替</li>
 <li>url: 任意有效的 url ，用于更新浏览器的地址</li>
 </ol>
-<p>想了解 <code>pushState</code> 的更多信息可以戳<a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState(" target="_blank" rel="noopener">这里</a>_method)。</p>
+<p>想了解 <code>pushState</code> 的更多信息可以戳<a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="noopener">这里</a>。</p>
 <p>这样看来，history 也有着控制路由的能力，hash 的改变可以触发 <code>hashchange</code> 事件，而 history 的改变不会触发任何事件，这样就无法直接监听 history 的改变从而做出相应的改变。所以，我们需要换个思路，我们可以列出所有可能触发 history 改变的情况，然后将这些方式一一进行拦截，这就变相的实现了对 history 改变的监听。</p>
 <p>对一个应用而言，url 的改变(不包括 hash 值的改变)只能由下面三种情况引起：</p>
 <ol>

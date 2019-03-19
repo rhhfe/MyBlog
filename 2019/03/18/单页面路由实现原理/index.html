@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Honghua&#39;s Blog">
 <meta property="og:description" content="前言如今 React、Vue 等这些框架大行其道，为前端开发提供了不少的便利性。用这些框架开发的应用叫单页面应用（即 SPA），单页面应用就是只有一张Web页面的应用，是一种从 Web 服务器加载的富客户端，单页面跳转仅刷新局部资源 ，公共资源(JS、CSS 等)仅需加载一次，不同的页面只是挂载的在根节点上的内容不一样，那是怎么实现不同的 url 地址对应不同的页面呢，这就前端路由的作用了">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-19T08:34:52.321Z">
+<meta property="og:updated_time" content="2019-03-19T08:38:27.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单页面路由实现原理">
 <meta name="twitter:description" content="前言如今 React、Vue 等这些框架大行其道，为前端开发提供了不少的便利性。用这些框架开发的应用叫单页面应用（即 SPA），单页面应用就是只有一张Web页面的应用，是一种从 Web 服务器加载的富客户端，单页面跳转仅刷新局部资源 ，公共资源(JS、CSS 等)仅需加载一次，不同的页面只是挂载的在根节点上的内容不一样，那是怎么实现不同的 url 地址对应不同的页面呢，这就前端路由的作用了">
@@ -364,7 +364,7 @@
 <li>title: 通常会忽略这个参数，可直接用 <code>null</code> 代替</li>
 <li>url: 任意有效的 url ，用于更新浏览器的地址</li>
 </ol>
-<p>想了解 <code>pushState</code> 的更多信息可以戳<a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState(" target="_blank" rel="noopener">这里</a>_method)。</p>
+<p>想了解 <code>pushState</code> 的更多信息可以戳<a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="noopener">这里</a>。</p>
 <p>这样看来，history 也有着控制路由的能力，hash 的改变可以触发 <code>hashchange</code> 事件，而 history 的改变不会触发任何事件，这样就无法直接监听 history 的改变从而做出相应的改变。所以，我们需要换个思路，我们可以列出所有可能触发 history 改变的情况，然后将这些方式一一进行拦截，这就变相的实现了对 history 改变的监听。</p>
 <p>对一个应用而言，url 的改变(不包括 hash 值的改变)只能由下面三种情况引起：</p>
 <ol>
