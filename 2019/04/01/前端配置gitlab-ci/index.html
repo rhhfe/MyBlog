@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT, 前端, 电影, s1min, Honghua, raohonghua, 饶鸿华" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、简单描述二、在服务器上安装 node 和 npm1. 在 node 官网下载 node1) 通过一下命令查看自己的 Linux 服务器是 64 位还是 32 位(x86_64表示64位系统， i686 i386表示32位系统)1uname -a 2) 在 node 的官网上找到最新的 node 包，找到最新的稳定版 2. 上传至服务器上通过 scp 命令上传 node 的安装包至服务器上的 u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端配置gitlab-ci">
+<meta property="og:url" content="https://s1min.github.io/2019/04/01/前端配置gitlab-ci/index.html">
+<meta property="og:site_name" content="Honghua&#39;s Blog">
+<meta property="og:description" content="一、简单描述二、在服务器上安装 node 和 npm1. 在 node 官网下载 node1) 通过一下命令查看自己的 Linux 服务器是 64 位还是 32 位(x86_64表示64位系统， i686 i386表示32位系统)1uname -a 2) 在 node 的官网上找到最新的 node 包，找到最新的稳定版 2. 上传至服务器上通过 scp 命令上传 node 的安装包至服务器上的 u">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="evernotecid://FC4A8E1F-FFAE-4821-96D6-3D6B58CFC74C/appyinxiangcom/18375542/ENResource/p8">
+<meta property="og:image" content="evernotecid://FC4A8E1F-FFAE-4821-96D6-3D6B58CFC74C/appyinxiangcom/18375542/ENResource/p9">
+<meta property="og:updated_time" content="2019-04-01T05:40:05.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端配置gitlab-ci">
+<meta name="twitter:description" content="一、简单描述二、在服务器上安装 node 和 npm1. 在 node 官网下载 node1) 通过一下命令查看自己的 Linux 服务器是 64 位还是 32 位(x86_64表示64位系统， i686 i386表示32位系统)1uname -a 2) 在 node 的官网上找到最新的 node 包，找到最新的稳定版 2. 上传至服务器上通过 scp 命令上传 node 的安装包至服务器上的 u">
+<meta name="twitter:image" content="evernotecid://FC4A8E1F-FFAE-4821-96D6-3D6B58CFC74C/appyinxiangcom/18375542/ENResource/p8">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://s1min.github.io/2019/04/01/前端配置gitlab-ci/"/>
+
+
+
+
+
+  <title>前端配置gitlab-ci | Honghua's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Honghua's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">你若盛开，清风自来</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s1min.github.io/2019/04/01/前端配置gitlab-ci/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Honghua">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Honghua's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">前端配置gitlab-ci</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-01T13:37:10+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、简单描述"><a href="#一、简单描述" class="headerlink" title="一、简单描述"></a>一、简单描述</h2><h2 id="二、在服务器上安装-node-和-npm"><a href="#二、在服务器上安装-node-和-npm" class="headerlink" title="二、在服务器上安装 node 和 npm"></a>二、在服务器上安装 node 和 npm</h2><h3 id="1-在-node-官网下载-node"><a href="#1-在-node-官网下载-node" class="headerlink" title="1. 在 node 官网下载 node"></a>1. 在 node 官网下载 node</h3><p>1) 通过一下命令查看自己的 Linux 服务器是 64 位还是 32 位(x86_64表示64位系统， i686 i386表示32位系统)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p>
+<p>2) 在 node 的官网上找到最新的 node 包，找到最新的稳定版</p>
+<h3 id="2-上传至服务器上"><a href="#2-上传至服务器上" class="headerlink" title="2. 上传至服务器上"></a>2. 上传至服务器上</h3><p>通过 <code>scp</code> 命令上传 node 的安装包至服务器上的 usr/local 目录中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P your_port /your_dir/node your_user@your_server:/usr/local</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-解压安装"><a href="#3-解压安装" class="headerlink" title="3. 解压安装"></a>3. 解压安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 解压</span><br><span class="line">xz -d node-vx.x.tar.xz</span><br><span class="line"></span><br><span class="line">// 安装</span><br><span class="line">tar -xvf node-vx.x.tar</span><br></pre></td></tr></table></figure>
+<h3 id="4-建立软连接"><a href="#4-建立软连接" class="headerlink" title="4. 建立软连接"></a>4. 建立软连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/node-vx.x/bin/node /usr/local/bin/</span><br><span class="line">ln -s /usr/local/node-vx.x/bin/npm /usr/local/bin/</span><br></pre></td></tr></table></figure>
+<h2 id="三、在服务端安装-gitlab-runner"><a href="#三、在服务端安装-gitlab-runner" class="headerlink" title="三、在服务端安装 gitlab-runner"></a>三、在服务端安装 gitlab-runner</h2><h3 id="1-安装-runner"><a href="#1-安装-runner" class="headerlink" title="1. 安装 runner"></a>1. 安装 runner</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.rpm.sh | sudo bash</span><br><span class="line"></span><br><span class="line">yum install gitlab-ci-multi-runner</span><br></pre></td></tr></table></figure>
+<h3 id="2-在-gitlab-中打开相应项目，查看并复制-url-和-token"><a href="#2-在-gitlab-中打开相应项目，查看并复制-url-和-token" class="headerlink" title="2. 在 gitlab 中打开相应项目，查看并复制 url 和 token"></a>2. 在 gitlab 中打开相应项目，查看并复制 url 和 token</h3><p><img src="evernotecid://FC4A8E1F-FFAE-4821-96D6-3D6B58CFC74C/appyinxiangcom/18375542/ENResource/p8" alt="9eabc0a133270c95b6446b93f4dbae10.png"></p>
+<h3 id="3-用上面复制得到的-url-和-token-在服务器上注册"><a href="#3-用上面复制得到的-url-和-token-在服务器上注册" class="headerlink" title="3. 用上面复制得到的 url 和 token 在服务器上注册"></a>3. 用上面复制得到的 url 和 token 在服务器上注册</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ci-multi-runner register</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Enter your GitLab instance URL:(填写上面截图中步骤3复制的 GitLab 的 URL )<br>Please enter the gitlab-ci coordinator URL:</p>
+</li>
+<li><p>Enter the token you obtained to register the Runner:（填写上面截图中步骤4复制的 GitLab 的 token 信息）<br>Please enter the gitlab-ci token for this runner:</p>
+</li>
+<li><p>Enter a description for the Runner, you can change this later in GitLab’s UI:（ runner 的描述）</p>
+</li>
+<li><p>Please enter the gitlab-ci description for this runner:</p>
+</li>
+<li><p>Enter the tags associated with the Runner, you can change this later in GitLab’s UI:（ runner 的标签，用逗号分开，标签要后面的 <code>.gitlab-ci.yml</code> 文件中的  <code>tag</code> 一样）<br>Please enter the gitlab-ci tags for this runner (comma separated):</p>
+</li>
+<li><p>Enter the Runner executor: （runner的执行者）<br>Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell:</p>
+</li>
+</ul>
+<h3 id="4-注册完成，修改文件权限"><a href="#4-注册完成，修改文件权限" class="headerlink" title="4. 注册完成，修改文件权限"></a>4. 注册完成，修改文件权限</h3><p>注册完成后，将 gitlab-runner 文件夹的用户所属修改为 gitlab-runner ，这样 gitlab-runner 对其才会有执行权限。( gitlab-runner 的文件夹会在 ~/.local/bin 目录下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 修改所属用户为 gitlab-runner</span><br><span class="line">sudo chown -R gitlab-runner:gitlab-runner /home/gitlab-runner</span><br><span class="line"></span><br><span class="line">// 修改读写权限</span><br><span class="line">sudo chmod -R 777 /home/gitlab-runner</span><br></pre></td></tr></table></figure></p>
+<p>注意：<br>1) 权限不够，会导致 runner 在执行的时候报错 <code>permission denied</code> 。<br>2) gitlab 上 <code>clone</code> 下来的文件在 Linux 环境中可能也会没有读写权限，进而也会报错 <code>permission denied</code> ，此时就要把 <code>clone</code> 下来的项目的目录进行修改权限。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R 777 /projects/project_name</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-查看-runner-的状态，开启-runner-的-service"><a href="#5-查看-runner-的状态，开启-runner-的-service" class="headerlink" title="5. 查看 runner 的状态，开启 runner 的 service"></a>5. 查看 runner 的状态，开启 runner 的 service</h3><p>注册好之后，如果在 gitlab-ci 的界面上看到的 runner 的旁边不是绿点，而是黑色三角的感叹号，可以使用下面的代码来开启 runner 的 service:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab-runner start</span><br><span class="line">// 或</span><br><span class="line">gitlab-runner run</span><br></pre></td></tr></table></figure></p>
+<p>启动成功之后如下图:<br><img src="evernotecid://FC4A8E1F-FFAE-4821-96D6-3D6B58CFC74C/appyinxiangcom/18375542/ENResource/p9" alt="32c33e7eb1587ee3499c91d730279f64.png"></p>
+<h2 id="四、编辑-gitlab-ci-yml"><a href="#四、编辑-gitlab-ci-yml" class="headerlink" title="四、编辑.gitlab-ci.yml"></a>四、编辑.gitlab-ci.yml</h2><h2 id="五、注意事项和一些问题"><a href="#五、注意事项和一些问题" class="headerlink" title="五、注意事项和一些问题"></a>五、注意事项和一些问题</h2><h3 id="1-npm-报错"><a href="#1-npm-报错" class="headerlink" title="1. npm 报错"></a>1. npm 报错</h3><p>注册 runner 之后，会在 Linux 服务器上新建一个名为 <code>gitlab-runner</code> 的用户，此用户默认是没有 npm 的权限的，所以 .gitlab-ci.yml 文件中在执行有 npm 的命令的时候，就会报错 <code>npm command not found</code>。 所以就要修改 PATH 环境变量。</p>
+<h4 id="修改-PATH-环境变量"><a href="#修改-PATH-环境变量" class="headerlink" title="修改 PATH 环境变量"></a>修改 PATH 环境变量</h4><p>1) 找到并打开 profile 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure></p>
+<p>2) 找到设置 PATH 的行并添加以下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/usr/local/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<p>3) 使其生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 重启服务器</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
+<p>注意：其有效期限为永久有效，对所有用户有效。</p>
+<h3 id="2-gitlab-runner-一直处于-pending-等待-状态"><a href="#2-gitlab-runner-一直处于-pending-等待-状态" class="headerlink" title="2. gitlab-runner 一直处于 pending(等待) 状态"></a>2. gitlab-runner 一直处于 pending(等待) 状态</h3><p>项目触发 runner ，但是一直处于 pending。<br>可能是 runner 卡住了，也有可能是因为服务器资源不足。<br>在服务器上执行下面这条命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ci-multi-runner list</span><br></pre></td></tr></table></figure></p>
+<p>查看 runner 是否还在，如果在，再执行下面这条命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ci-multi-runner verify</span><br></pre></td></tr></table></figure></p>
+<p>如果发现 runner 还活着，但是就是不执行流程。<br>下面有两种解决方案:<br>1) 解决方案1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 这条命令回去执行 runner 服务，但是每次都需要运行次命令才回去执行任务(不推荐使用)</span><br><span class="line">gitlab-ci-multi-runner run</span><br></pre></td></tr></table></figure></p>
+<p>2) 解决方案2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 重启 runner ，发现会自动去执行触发 runner 任务</span><br><span class="line">gitlab-ci-multi-runner restart</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/18/单页面路由实现原理/" rel="next" title="单页面路由实现原理">
+                <i class="fa fa-chevron-left"></i> 单页面路由实现原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Honghua</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rhhfe" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:raohonghua@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、简单描述"><span class="nav-number">1.</span> <span class="nav-text">一、简单描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、在服务器上安装-node-和-npm"><span class="nav-number">2.</span> <span class="nav-text">二、在服务器上安装 node 和 npm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在-node-官网下载-node"><span class="nav-number">2.1.</span> <span class="nav-text">1. 在 node 官网下载 node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-上传至服务器上"><span class="nav-number">2.2.</span> <span class="nav-text">2. 上传至服务器上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-解压安装"><span class="nav-number">2.3.</span> <span class="nav-text">3. 解压安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-建立软连接"><span class="nav-number">2.4.</span> <span class="nav-text">4. 建立软连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、在服务端安装-gitlab-runner"><span class="nav-number">3.</span> <span class="nav-text">三、在服务端安装 gitlab-runner</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装-runner"><span class="nav-number">3.1.</span> <span class="nav-text">1. 安装 runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在-gitlab-中打开相应项目，查看并复制-url-和-token"><span class="nav-number">3.2.</span> <span class="nav-text">2. 在 gitlab 中打开相应项目，查看并复制 url 和 token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-用上面复制得到的-url-和-token-在服务器上注册"><span class="nav-number">3.3.</span> <span class="nav-text">3. 用上面复制得到的 url 和 token 在服务器上注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-注册完成，修改文件权限"><span class="nav-number">3.4.</span> <span class="nav-text">4. 注册完成，修改文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-查看-runner-的状态，开启-runner-的-service"><span class="nav-number">3.5.</span> <span class="nav-text">5. 查看 runner 的状态，开启 runner 的 service</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、编辑-gitlab-ci-yml"><span class="nav-number">4.</span> <span class="nav-text">四、编辑.gitlab-ci.yml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、注意事项和一些问题"><span class="nav-number">5.</span> <span class="nav-text">五、注意事项和一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-npm-报错"><span class="nav-number">5.1.</span> <span class="nav-text">1. npm 报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-PATH-环境变量"><span class="nav-number">5.1.1.</span> <span class="nav-text">修改 PATH 环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-gitlab-runner-一直处于-pending-等待-状态"><span class="nav-number">5.2.</span> <span class="nav-text">2. gitlab-runner 一直处于 pending(等待) 状态</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Honghua</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

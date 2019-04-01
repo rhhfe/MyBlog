@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="需求如：www.raohonghua.com/musicwww.raohonghua.com/blog类似这种，一个域名对应多个 Vue 项目 Vue 项目配置vue-router 中配置为了在 url 中不要 # ，可以使用路由的 history 模式，参考官方文档配置 base ，参考官方文档 12345const router = new VueRouter(&amp;#123;  mode: &amp;a">
+<meta name="description" content="需求如：www.xxx.com/musicwww.xxx.com/blog类似这种，一个域名对应多个 Vue 项目 Vue 项目配置vue-router 中配置为了在 url 中不要 # ，可以使用路由的 history 模式，参考官方文档配置 base ，参考官方文档 12345const router = new VueRouter(&amp;#123;  mode: &apos;history&apos;,  base">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个域名对应多个 Vue history 模式项目的 nginx 配置">
 <meta property="og:url" content="https://s1min.github.io/2019/02/15/一个域名对应多个 Vue history 模式项目的 nginx 配置/index.html">
 <meta property="og:site_name" content="Honghua&#39;s Blog">
-<meta property="og:description" content="需求如：www.raohonghua.com/musicwww.raohonghua.com/blog类似这种，一个域名对应多个 Vue 项目 Vue 项目配置vue-router 中配置为了在 url 中不要 # ，可以使用路由的 history 模式，参考官方文档配置 base ，参考官方文档 12345const router = new VueRouter(&amp;#123;  mode: &amp;a">
+<meta property="og:description" content="需求如：www.xxx.com/musicwww.xxx.com/blog类似这种，一个域名对应多个 Vue 项目 Vue 项目配置vue-router 中配置为了在 url 中不要 # ，可以使用路由的 history 模式，参考官方文档配置 base ，参考官方文档 12345const router = new VueRouter(&amp;#123;  mode: &apos;history&apos;,  base">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-19T08:50:22.966Z">
+<meta property="og:updated_time" content="2019-04-01T05:43:08.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个域名对应多个 Vue history 模式项目的 nginx 配置">
-<meta name="twitter:description" content="需求如：www.raohonghua.com/musicwww.raohonghua.com/blog类似这种，一个域名对应多个 Vue 项目 Vue 项目配置vue-router 中配置为了在 url 中不要 # ，可以使用路由的 history 模式，参考官方文档配置 base ，参考官方文档 12345const router = new VueRouter(&amp;#123;  mode: &amp;a">
+<meta name="twitter:description" content="需求如：www.xxx.com/musicwww.xxx.com/blog类似这种，一个域名对应多个 Vue 项目 Vue 项目配置vue-router 中配置为了在 url 中不要 # ，可以使用路由的 history 模式，参考官方文档配置 base ，参考官方文档 12345const router = new VueRouter(&amp;#123;  mode: &apos;history&apos;,  base">
 
 
 
@@ -341,12 +341,12 @@
       
 
       
-        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>如：<br><a href="http://www.raohonghua.com/music" target="_blank" rel="noopener">www.raohonghua.com/music</a><br><a href="http://www.raohonghua.com/blog" target="_blank" rel="noopener">www.raohonghua.com/blog</a><br>类似这种，一个域名对应多个 Vue 项目</p>
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>如：<br><a href="http://www.xxx.com/music" target="_blank" rel="noopener">www.xxx.com/music</a><br><a href="http://www.xxx.com/blog" target="_blank" rel="noopener">www.xxx.com/blog</a><br>类似这种，一个域名对应多个 Vue 项目</p>
 <h2 id="Vue-项目配置"><a href="#Vue-项目配置" class="headerlink" title="Vue 项目配置"></a>Vue 项目配置</h2><h3 id="vue-router-中配置"><a href="#vue-router-中配置" class="headerlink" title="vue-router 中配置"></a><code>vue-router</code> 中配置</h3><p>为了在 url 中不要 <code>#</code> ，可以使用路由的 <code>history</code> 模式，参考<a href="https://router.vuejs.org/guide/essentials/history-mode.html" target="_blank" rel="noopener">官方文档</a><br>配置 base ，参考<a href="https://router.vuejs.org/api/#base" target="_blank" rel="noopener">官方文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">  mode: &apos;history&apos;,</span><br><span class="line">  base: &apos;/music/&apos;,</span><br><span class="line">  routes: [...]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="webpack-的配置"><a href="#webpack-的配置" class="headerlink" title="webpack 的配置"></a>webpack 的配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, &apos;../music/index.html&apos;),</span><br><span class="line">  assetsRoot: path.resolve(__dirname, &apos;../music&apos;),</span><br><span class="line">  assetsSubDirectory: &apos;static&apos;,</span><br><span class="line">  assetsPublicPath: &apos;/music/&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">'history'</span>,</span><br><span class="line">  base: <span class="string">'/music/'</span>,</span><br><span class="line">  routes: [...]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="webpack-的配置"><a href="#webpack-的配置" class="headerlink" title="webpack 的配置"></a>webpack 的配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">build: &#123;</span><br><span class="line">  index: path.resolve(__dirname, <span class="string">'../music/index.html'</span>),</span><br><span class="line">  assetsRoot: path.resolve(__dirname, <span class="string">'../music'</span>),</span><br><span class="line">  assetsSubDirectory: <span class="string">'static'</span>,</span><br><span class="line">  assetsPublicPath: <span class="string">'/music/'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后将打包后得到的文件放到 nginx 配置的 root 目录下（如：/www/vue/music, /www/vue/blog）</p>
-<h2 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen     80;</span><br><span class="line">    servername raohonghua.com;</span><br><span class="line">    root       /www/vue;</span><br><span class="line">    </span><br><span class="line">    location /music &#123;</span><br><span class="line">        try_files $uri $uri/ /music/index.html;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location /blog &#123;</span><br><span class="line">        try_files $uri $uri/ /blog/index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen     80;</span><br><span class="line">    servername xxx.com;</span><br><span class="line">    root       /www/vue;</span><br><span class="line">    </span><br><span class="line">    location /music &#123;</span><br><span class="line">        try_files $uri $uri/ /music/index.html;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location /blog &#123;</span><br><span class="line">        try_files $uri $uri/ /blog/index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改 nginx 配置之后重启下 nginx 服务器就行了。</p>
 
       
@@ -461,7 +461,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
